@@ -12,6 +12,6 @@ export function customRepository(repositoryClass: new () => Repository<any>) {
     provide: repositoryClass.name,
     useFactory: async (connection: Connection) =>
       await getCustomRepository(repositoryClass),
-    inject: ['PostgresConnection'],
+    inject: ['MysqlConnection'],
   };
 }

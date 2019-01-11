@@ -7,16 +7,21 @@ import { UserService } from "./user.service";
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
-  @Get(":id")
+  @Get(':id')
   @ApiResponse({
     status: HttpStatus.OK,
-    description: "User trouvé et retourné"
+    description: 'User trouvé et retourné'
   })
   @ApiResponse({
     status: 403,
-    description: "Forbidden."
+    description: 'Forbidden.'
   })
-  async getById(@Param("id") id: string) {
+  async getById(@Param('id') id: string) {
+    return this.userService.getById(id);
+  }
+
+  @Get(":id" + "/modifier")
+  async modifById(@Param("id") id: string) {
     return this.userService.getById(id);
   }
 }
